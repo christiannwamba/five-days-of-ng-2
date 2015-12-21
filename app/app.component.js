@@ -25,11 +25,20 @@ System.register(['angular2/core'], function(exports_1) {
                         { model: 'GT4', year: 2016, vendor: 'Porsche' },
                         { model: 'P14', year: 2016, vendor: 'McLaren' },
                     ];
+                    //Empt car
+                    this.car = {
+                        model: "", year: 0, vendor: ""
+                    };
                 }
+                //Update list of cars with new car
+                AppComponent.prototype.addCar = function () {
+                    this.cars.push(this.car);
+                };
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <h1>{{greeting}} Day 1: Understanding Components</h1>\n        <div class=\"cars\">\n            <ul>\n                <li *ngFor=\"#car of cars\">{{car.year}} {{car.vendor}} {{car.model}}</li>\n            </ul>\n        </div>\n\t"
+                        template: "\n\t  <div class=\"container\">\n        <h1>{{greeting}} Day 1: Understanding Components</h1>\n        <div class=\"cars\">\n            <ul>\n                <li *ngFor=\"#car of cars\"><a href=\"#\">{{car.year}} {{car.vendor}} {{car.model}}</a></li>\n            </ul>\n        </div>\n        <div class=\"car-form\">\n            <form (ngSubmit)=\"addCar()\">\n                <label>Model: </label>\n                <input class=\"form-control\" [(ngModel)]=\"car.model\">\n\n                <label>Year: </label>\n                <input class=\"form-control\" [(ngModel)]=\"car.year\">\n\n                <label>Vendor: </label>\n                <input class=\"form-control\" [(ngModel)]=\"car.vendor\">\n\n                <button class=\"btn btn-primary\" type=\"submit\">Add</button>\n            </form>\n        </div>\n      </div>\n\t",
+                        styles: ["\n        .container{\n            width:70%;\n            margin: 50px auto;\n        }\n\t"]
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
