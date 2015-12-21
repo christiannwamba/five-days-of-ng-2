@@ -19,11 +19,17 @@ System.register(['angular2/core'], function(exports_1) {
             AppComponent = (function () {
                 function AppComponent() {
                     this.greeting = "Welcome to";
+                    this.cars = [
+                        { model: 'GT', year: 2017, vendor: 'Ford' },
+                        { model: 'Defender', year: 2018, vendor: 'Land Rover' },
+                        { model: 'GT4', year: 2016, vendor: 'Porsche' },
+                        { model: 'P14', year: 2016, vendor: 'McLaren' },
+                    ];
                 }
                 AppComponent = __decorate([
                     core_1.Component({
                         selector: 'my-app',
-                        template: "\n        <h1>{{greeting}} Day 1: Understanding Components</h1>\n\t"
+                        template: "\n        <h1>{{greeting}} Day 1: Understanding Components</h1>\n        <div class=\"cars\">\n            <ul>\n                <li *ngFor=\"#car of cars\">{{car.year}} {{car.vendor}} {{car.model}}</li>\n            </ul>\n        </div>\n\t"
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);
