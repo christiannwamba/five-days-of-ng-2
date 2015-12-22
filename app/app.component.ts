@@ -1,6 +1,7 @@
 import {Component, OnInit} from 'angular2/core'
 import {Car} from './car.interface'
 import {CarService} from './car.service'
+import {ShortYearPipe} from './short-year.pipe'
 
 @Component({
 	selector:'my-app',
@@ -9,7 +10,7 @@ import {CarService} from './car.service'
         <h1>{{greeting}} 5 days of Angular</h1>
         <div class="cars">
             <ul>
-                <li *ngFor="#car of cars"><a href="#">{{car.year}} {{car.vendor}} {{car.model}}</a></li>
+                <li *ngFor="#car of cars"><a href="#">{{car.year | shortYear}} {{car.vendor | uppercase}} {{car.model}}</a></li>
             </ul>
         </div>
         <div class="car-form">
@@ -34,7 +35,8 @@ import {CarService} from './car.service'
             margin: 50px auto;
         }
 	`],
-	providers:[CarService]
+	providers:[CarService],
+    pipes: [ShortYearPipe]
 })
  export class AppComponent implements OnInit {         
     public greeting = "Welcome to";
