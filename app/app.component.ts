@@ -1,11 +1,12 @@
-import {Component} from 'angular2/core'
-import {Car} from './car.interface';
+import {Component, OnInit} from 'angular2/core'
+import {Car} from './car.interface'
+import {CarService} from './car.service'
 
 @Component({
 	selector:'my-app',
 	template:`
 	  <div class="container">
-        <h1>{{greeting}} Day 1: Understanding Components</h1>
+        <h1>{{greeting}} 5 days of Angular</h1>
         <div class="cars">
             <ul>
                 <li *ngFor="#car of cars"><a href="#">{{car.year}} {{car.vendor}} {{car.model}}</a></li>
@@ -32,20 +33,29 @@ import {Car} from './car.interface';
             width:70%;
             margin: 50px auto;
         }
-	`]
+	`],
+	providers:[CarService]
 })
- export class AppComponent {     
+ export class AppComponent implements OnInit {         
     public greeting = "Welcome to";
-    public cars: Car[] = [
-    {model:'GT', year:2017, vendor:'Ford'},
-    {model:'Defender', year:2018, vendor:'Land Rover'},
-    {model:'GT4', year:2016, vendor:'Porsche'},
-    {model:'P14', year:2016, vendor:'McLaren'},
-    ];
-    //Empt car
+    public cars : Car[];
+
+    constructor(private _carService: CarService){ 
+
+    }
+    //Get cars using CarService
+    getCars(){
+        this._carService.getCars().then(cars => this.cars = cars);
+    }
+    //Load the cars on initialization
+    ngOnInit(){
+        this.getCars()
+    }
+    //Empty car
     public car: Car = {
     model:"", year:0, vendor:""
     };   
+
     //Update list of cars with new car
     addCar(){
         this.cars.push(this.car);
